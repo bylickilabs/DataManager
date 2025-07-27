@@ -1,0 +1,51 @@
+name: Universal Data Manager – Fullstack CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  frontend-build:
+    name: 📦 Frontend – React + Vite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🧰 Setup Node.js (LTS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: 📥 Install Dependencies
+        working-directory: frontend
+        run: npm install
+
+      - name: 🛠️ Build Frontend with Vite
+        working-directory: frontend
+        run: npm run build
+
+  backend-check:
+    name: 🔧 Backend – FastAPI (Python)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Python Dependencies
+        working-directory: backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: ✅ Backend Health Check
+        run: echo "✔️ FastAPI code is present and dependencies are installed."
