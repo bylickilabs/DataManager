@@ -1,3 +1,6 @@
+|[![Universal Data Manager – Fullstack CI](https://github.com/bylickilabs/Datamanager/actions/workflows/main.yml/badge.svg)](https://github.com/bylickilabs/Datamanager/actions/workflows/main.yml)|
+|---|
+
 # 🧩 Universal Data Manager – Fullstack Project
 
 A complete system for working with MySQL, PostgreSQL, and MongoDB in parallel – consisting of:
